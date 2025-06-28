@@ -22,7 +22,7 @@ async def cmd_start(message: types.Message):
 async def private(message: types.Message):
     if message.chat.type == 'private':
         try:
-            await message.reply(str(getweather.get_location(message.text)))
+            await message.reply(getweather.format_answer(getweather.get_location(message.text)))
         except Exception as err:
             return err
     return None

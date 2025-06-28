@@ -24,6 +24,18 @@ def get_from_coords(lat, lon):
     response = requests.get(url, params).json()
     return response
 
+def format_answer(response):
+    answer = ''
+    for loc in response['list']:
+            answer +=   f'Страна: {loc['sys']['country']}\n'\
+                        f'Город: {loc['name']}\n'\
+                        f'Координаты: {loc['coord']['lat']} {loc['coord']['lon']}\n'\
+                        f'Температура: {loc['main']['temp']}C\n'\
+                        f'Ощущается как: {loc['main']['feels_like']}C\n\n'
+    return answer
+
 if __name__ == "__main__":
     city = input()
-    print(get_location(city))
+    print(format_answer(get_location(city)))
+
+
